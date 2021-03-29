@@ -33,51 +33,31 @@ public class NewServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 }
-public class TestASClient {
-	public static void main(String[] args) throws InterruptedException {	
-		try(Socket socket = new Socket("localhost", 3345);	
-				BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
-				DataOutputStream oos = new DataOutputStream(socket.getOutputStream());
-				DataInputStream ois = new DataInputStream(socket.getInputStream());	)
-		{
-			System.out.println("Client connected to socket.");
-			System.out.println();
-			System.out.println("Client writing channel = oos & reading channel = ois initialized.");	
-				while(!socket.isOutputShutdown()){					
-					if(br.ready()){					
-			System.out.println("Client start writing in channel...");
-			Thread.sleep(1000);
-			String clientCommand = br.readLine();			
-			oos.writeUTF(clientCommand);
-			oos.flush();
-			System.out.println("Clien sent message " + clientCommand + " to server.");
-			Thread.sleep(1000);		
-			if(clientCommand.equalsIgnoreCase("quit")){			
-				System.out.println("Client kill connections");
-				Thread.sleep(2000);				
-				if(ois.available()!=0)		{	
-					System.out.println("reading...");
-					String in = ois.readUTF();
-					System.out.println(in);
-							}			
-				break;				
-			}		
-			System.out.println("Client wrote & start waiting for data from server...");			
-			Thread.sleep(2000);		
-			if(ois.available()!=0)		{									
-			System.out.println("reading...");
-			String in = ois.readUTF();
-			System.out.println(in);
-					}			
-				}
-			}
-			System.out.println("Closing connections & channels on clentSide - DONE.");
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+public class DifNumbers {
+	
+	private int deo;
+
+   public static void main(String args[]) {
+      int num1 = 7;
+	  int num2 = 15, dif;
+      dif = num1 - num2;
+      System.out.println("Sum of these numbers: " + dif);
+   }
+   
+   public static void main(String args[]) {
+	   
+	   private int tel, get, red1 = 5, red2 = 10, rif;
+      rif = red1 - red2;
+      System.out.println("Sum of these numbers: " + rif);
+   }
+  
+ Connection conn = null;
+try {
+  String uname = getEncryptedUser();
+  String password = getEncryptedPass();
+  conn = DriverManager.getConnection("jdbc:mysql://localhost/test?" +
+        "user=" + uname + "&password=" + password);
+}
 }
 public class ChatServer implements TCPConnectionListener {
     public static void main(String[] args) {
